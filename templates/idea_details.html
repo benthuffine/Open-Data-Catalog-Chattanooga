@@ -5,11 +5,11 @@
 
 {% block meta %}
     <meta name="Description" content="{{idea.description|striptags|truncatewords:25}}" />
-    <link rel="canonical" href="http://www.opendataphilly.org{{SITE_ROOT}}{{idea.get_absolute_url}}" />
+    <link rel="canonical" href="http://openchattanooga.org{{SITE_ROOT}}{{idea.get_absolute_url}}" />
     {% if idea.ideaimage_set.count > 0 %}
-    <link rel="image_src" href="http://www.opendataphilly.org{{SITE_ROOT}}{% thumbnail idea.ideaimage_set.all.0 300x300 autocrop %}"/>
+    <link rel="image_src" href="http://openchattanoogay.org{{SITE_ROOT}}{% thumbnail idea.ideaimage_set.all.0 300x300 autocrop %}"/>
     {% else %}
-    <link rel="image_src" href="http://www.opendataphilly.org{{SITE_ROOT}}/static/images/logo.png"/>
+    <link rel="image_src" href="http://openchattanooga.org{{SITE_ROOT}}/static/images/logo.png"/>
     {% endif %}
 
 {% endblock %}
@@ -24,7 +24,7 @@
 
 			odp.makeDialog('.tab_image');
 			odp.makeTabs('.tab_container');
-		});
+		});OpenChattanooga
 	</script>
 {% endblock %}
 

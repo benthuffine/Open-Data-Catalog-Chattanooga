@@ -39,7 +39,7 @@ urlpatterns = patterns('',
            { 'backend': 'registration_backend.ODPBackend' },
        name='registration_register'),
     (r'^accounts/password_reset', 'django.contrib.auth.views.password_reset'),
-    (r'^accounts/', include('registration.backends.default.urls')),
+    (r'^accounts/', include('registration.urls')),
     (r'^opendata/nominate/', include('suggestions.urls')),
 
     (r'^contest/$', 'contest.views.get_entries'),
@@ -60,6 +60,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^_admin_/', include(admin.site.urls)),
+
+    (r'^grappelli/', include('grappelli.urls')),
 
     (r'^/static/admin_media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.ADMIN_MEDIA_ROOT}), 
