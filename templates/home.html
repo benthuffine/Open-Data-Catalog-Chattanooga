@@ -13,12 +13,12 @@
 
 {% block center_container %}
 
-<a class="resource" id="home_idea" href="{{SITE_ROOT}}{{idea.get_absolute_url}}" style="background: #ffffff url(/media/{{idea.get_home_page_image.image|default:'/static/images/detail_no_image.gif'}}) center no-repeat;"></a>
+<a class="resource" id="home_idea" href="{{SITE_ROOT}}{{idea.get_absolute_url}}" style="background: #ffffff url({{idea.get_home_page_image.image|default:'/static/images/detail_no_image.gif'}}) center no-repeat;"></a>
 <div id="home_idea_label">
   <a href="{{SITE_ROOT}}{{idea.get_absolute_url}}">{{idea.title}}</a> by {{idea.author}}
 </div>
 <div id="home_twitter">
-<h2 class="grid"><a href="http://twitter.com/createhere" target="_blank"><span class="icon_twitter"></span>@CreateHere</a></h2>
+<h2 class="grid"><a href="http://twitter.com/openchattanooga" target="_blank"><span class="icon_twitter"></span>@openchattanooga</a></h2>
 
 <ul id="home_twitter_feed">
   {% for tweet in tweets %}
