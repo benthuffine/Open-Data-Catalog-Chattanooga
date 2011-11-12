@@ -138,3 +138,18 @@ admin.site.register(Vote, VoteAdmin)
 
 admin.site.register(CommentWithRating)
 
+from django.contrib.flatpages.models import FlatPage
+from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminOld
+
+class FlatPageAdmin(FlatPageAdminOld):
+    class Media:
+        js = [
+            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js', 
+            '/static/grappelli/tinymce_setup/tinymce_setup.js',
+        ]
+
+# We have to unregister it, and then reregister
+admin.site.unregister(FlatPage)
+admin.site.register(FlatPage, FlatPageAdmin)
+
+
