@@ -32,8 +32,8 @@
 {% endblock %}
 
 {% block center_container %}
-	<h1 id="title">{{resource}}</h1>
-	<h2 id="description">{{resource.short_description|safe}}</h2>
+	<h1>{{resource}}</h1>
+	<h3 class="light-green">{{resource.short_description|safe}}</h3>
 
   <div class="tab_container" id="content_resource">
     {% if perms.opendata.change_resource %}
@@ -193,16 +193,18 @@
     <ul class="tab_header">
       <li class="tab_button"><a href="#data-tab">DATA</a></li>
     </ul>
-    <div class="tab_body" id="#data-tab">
+    <div class="tab_body" id="data-tab">
     {% if resource.get_grouped_urls.Data %}
       <div class="data_block">
         <div class="url_header">
-          <div id="resource_icon_Data" class="url_image"></div><div class="url_label">Raw Data</div>
+          <div id="resource_icon_Data" class="url_image"></div><div class="url_label">Data</div>
         </div>
         <ul>
         {% for url in resource.get_grouped_urls.Data %}
           <li class="url_link"><a href="{{url.url}}" target="_blank">{{url.url_label}}</a></li>
         {% endfor %}
+                <div class="clear"></div>
+
         </ul>
       </div>
     {% endif %}
@@ -216,6 +218,8 @@
         {% for url in resource.get_grouped_urls.Documentation %}
           <li class="url_link"><a href="{{url.url}}" target="_blank">{{url.url_label}}</a></li>
         {% endfor %}
+                <div class="clear"></div>
+
         </ul>
       </div>
     {% endif %}
@@ -229,6 +233,8 @@
         {% for url in resource.get_grouped_urls.API %}
           <li class="url_link"><a href="{{url.url}}" target="_blank">{{url.url_label}}</a></li>
         {% endfor %}
+                <div class="clear"></div>
+
         </ul>
       </div>
       {% endif %}
@@ -242,6 +248,8 @@
         {% for url in resource.get_grouped_urls.Application %}
           <li class="url_link"><a href="{{url.url}}" target="_blank">{{url.url_label}}</a></li>
         {% endfor %}
+                <div class="clear"></div>
+
         </ul>
       </div>
       {% endif %}

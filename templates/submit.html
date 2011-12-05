@@ -15,8 +15,8 @@
 {% endblock %}
 
 {% block center_container %}
-<h1 id="title">Submit Your Data</h1>
-<h2 id="description">We realize that we haven't listed every Philadelphia-based open data set in the OpenChattanooga catalog.
+<h1>Submit Your Data</h1>
+<p class="blocked-lite capitalize">We realize that we haven't listed every Philadelphia-based open data set in the OpenChattanooga catalog.
 	If have a specific data set that you think should be included, let us know by completing and
 	submitting the form below. We'll review the information and determine whether the data set should
 	be included in OpenChattanooga. The data must be specific to Philadelphia, available online, and contain
@@ -24,8 +24,8 @@
 	<br><br>
 	This form is for recommending specific data sets, applications, or APIs. If you'd like to nominate a
 	general area where you think data should be more easily available, visit the <a href="{{SITE_ROOT}}/opendata/nominate/?sort=rating_score&dir=desc">Nominate Data</a> page.
-</h2>
-<div id="form_container" class="resource">
+</p>
+<div id="form_container" class="resource capitalize">
 	<form action="{{SITE_ROOT}}/opendata/submit/" method="post">
 		{% csrf_token %}
 		{% if form.errors %}

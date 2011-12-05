@@ -22,7 +22,6 @@
 {% block center_container %}
 
 
-
 	{% if tag %}
 
         <a href="{{SITE_ROOT}}/ideas" class="resource" id="promotion_header">
@@ -44,6 +43,7 @@
 					<li id="filter_application"><a href="javascript:void()" onClick="odp.getFiltered('application');return false;" class="url_image" ></a></li>
 					<li id="filter_data"><a href="javascript:void()" onClick="odp.getFiltered('data');return false;" class="url_image"></a></li>
 					<li id="filter_api"><a href="javascript:void()" onClick="odp.getFiltered('api');return false;" class="url_image"></a></li>
+					<li id="filter_documentation"><a href="javascript:void()" onClick="odp.getFiltered('documentation');return false;" class="url_image"></a></li>
 					<li class="info_label">FILTER:</li>
 				</ul>
 			</div>
@@ -64,34 +64,41 @@
 
 		{% for r in results %}
 			<li class="resource">
-				<div id="url_types">
+				<div class="resource-item-block">
+					<div class="thumb-list resource-item-block">
+						{% if r.get_first_image %}
+							<a href="{{SITE_ROOT}}/opendata/resource/{{r.id}}/{{r.name|slugify}}"><img src="{% thumbnail r.get_first_image 80x80 autocrop %}" alt="{{r.get_first_image.title}}"></a>
+						{% else %}
+							<a href="{{SITE_ROOT}}/opendata/resource/{{r.id}}/{{r.name|slugify}}"><img src="{{SITE_ROOT}}/media/images/icon-default-map.gif" alt="No Resource Images"></a>
+						{% endif %}
+						<div class="rating_image">
+							<div id="rating">
+								<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
+								<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
+								<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
+								<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
+								<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
+								<script type="text/javascript">
+									var rating = {{r.rating.score|default:"0"}};
+									if (rating != 0) {
+										$("input:radio.star_r{{r.id}}")[{{r.rating.score}}-1].checked = 'checked';
+									}
+								</script>
+							</div>
+						</div>
+					</div>
+				
+				<div class="resource_info resource-item-block">
+					<h3><a href="{{SITE_ROOT}}/opendata/resource/{{r.id}}/{{r.name|slugify}}">{{r}}</a></h3>
+					<h4>{{r.short_description|safe|default:"No description available."}}</h4>
+					<div id="resource_button"><a class="button" href="{{SITE_ROOT}}/opendata/resource/{{r.id}}/{{r.name|slugify}}">VIEW DETAILS</a></div>
+				</div>
+								</div>
+
+				<div class="url_types">
 					{% for u in r.get_distinct_url_types %}
 						<div class="url_image" id="resource_icon_{{u}}" alt="{{u}}" title="{{u}}"></div>
-					{% endfor %}</div>
-				<div id="rating_image">
-					<div id="rating">
-						<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
-						<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
-						<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
-						<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
-						<input name="star_r{{r.id}}" type="radio" class="star star_r{{r.id}}" disabled="disabled"/>
-						<script type="text/javascript">
-							var rating = {{r.rating.score|default:"0"}};
-							if (rating != 0) {
-								$("input:radio.star_r{{r.id}}")[{{r.rating.score}}-1].checked = 'checked';
-							}
-						</script>
-					</div>
-					{% if r.get_first_image %}
-						<a href="{{SITE_ROOT}}/opendata/resource/{{r.id}}/{{r.name|slugify}}"><img src="{% thumbnail r.get_first_image 80x80 autocrop %}" alt="{{r.get_first_image.title}}"></a>
-					{% else %}
-						<a href="{{SITE_ROOT}}/opendata/resource/{{r.id}}/{{r.name|slugify}}"><img src="/static/images/results_no_image.png" alt="No Resource Images"></a>
-					{% endif %}
-				</div>
-				<div id="resource_info">
-					<h3 id="resource_title"><a href="{{SITE_ROOT}}/opendata/resource/{{r.id}}/{{r.name|slugify}}">{{r}}</a></h3>
-					<h4 id="resource_desc">{{r.short_description|safe|default:"No description available."}}</h4>
-					<div id="resource_button"><a class="button" href="{{SITE_ROOT}}/opendata/resource/{{r.id}}/{{r.name|slugify}}">VIEW DETAILS</a></div>
+					{% endfor %}
 				</div>
         <div class="clear"></div>
 			</li>
